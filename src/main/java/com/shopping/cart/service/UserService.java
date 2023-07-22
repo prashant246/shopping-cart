@@ -1,7 +1,8 @@
 package com.shopping.cart.service;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public interface UserService {
+    public void create();
+    public void update();
+    public void login();
+    public void logout();
 }
