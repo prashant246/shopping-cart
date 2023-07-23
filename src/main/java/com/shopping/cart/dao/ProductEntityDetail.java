@@ -32,11 +32,25 @@ public class ProductEntityDetail {
         if (byId == null) {
             throw new CartServiceException(ErrorMessages.PRODUCT_ID_NOT_PRESENT.getErrorMessage(), HttpStatus.BAD_REQUEST);
         }
-        byId.setId(product.getProductId());
-        byId.setName(product.getTitle());
-        byId.setCount(product.getCount());
-        byId.setPrice(product.getPrice());
-        byId.setDiscount(product.getDiscount());
+
+        if(product.getProductId() != null) {
+            byId.setId(product.getProductId());
+        }
+        if(product.getTitle() != null) {
+            byId.setName(product.getTitle());
+        }
+        if(product.getCount() != null) {
+            byId.setCount(product.getCount());
+        }
+        if(product.getPrice() != null) {
+            byId.setPrice(product.getPrice());
+        }
+        if(product.getDiscount() != null) {
+            byId.setDiscount(product.getDiscount());
+        }
+        if (product.getCount() > 0) {
+            product.setStatus(ProductStatus.AVAILABLE);
+        }
 
         return byId.getId();
     }

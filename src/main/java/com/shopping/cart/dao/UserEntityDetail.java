@@ -106,6 +106,7 @@ public class UserEntityDetail {
             productsList.add(com.shopping.cart.domain.Product.builder()
                             .title(product.getName())
                             .price(product.getPrice())
+                            .discount(product.getDiscount())
                             .productId(product.getId())
                     .build());
         }

@@ -26,6 +26,7 @@ public class ProductMapper {
                 .price(request.getPrice())
                 .count(request.getCount())
                 .discount(request.getDiscount())
+                .productId(request.getId())
                 .build();
     }
 
