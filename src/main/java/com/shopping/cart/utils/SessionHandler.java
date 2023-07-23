@@ -20,6 +20,10 @@ public class SessionHandler {
     @Value("${sessionTtlInMinutes}")
     private int sessionTtlInMinutes;
 
+    /**
+     * generates a new session with given TTL
+     * @return
+     */
     public Session create() {
         LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(sessionTtlInMinutes);
         String sessionId = UUID.randomUUID().toString();
@@ -30,12 +34,25 @@ public class SessionHandler {
                 .build();
     }
 
+    /**
+     * Validate the user session data if it is logged out or session is expired.
+     * @param session
+     */
     public void validate(Session session) {
         if (SessionStatus.LOGOUT.equals(session.getStatus())) {
             throw new CartServiceException(ErrorMessages.INVALID_SESSION_ID.getErrorMessage(), HttpStatus.UNAUTHORIZED);
         }
+        if (session.getExpiryAt().isBefore(LocalDateTime.now())) {
+            throw new CartServiceException(ErrorMessages.SESSION_EXPIRED.getErrorMessage(), HttpStatus.UNAUTHORIZED);
+        }
     }
 
+    /**
+     * validate the login reuqest data. Password is plain right now but this can
+     * be stored in encrypted manner
+     * @param request
+     * @param user
+     */
     public void validateLoginRequest(LoginRequest request, User user) {
         if (request.getPassword().equals(user.getCredential().getPassword())) {
             return;
@@ -43,6 +60,10 @@ public class SessionHandler {
         throw new CartServiceException(ErrorMessages.INVALID_PASSWORD.getErrorMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Validate if the current user is ADMIN or not
+     * @param user
+     */
     public void isAdmin(User user) {
         if (Role.ADMIN.equals(user.getRole())) {
             return;

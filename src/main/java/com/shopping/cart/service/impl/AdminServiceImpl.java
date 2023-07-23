@@ -29,6 +29,12 @@ public class AdminServiceImpl implements AdminService {
         this.userEntityDetail = userEntityDetail;
     }
 
+    /**
+     * suspend the user
+     * @param suspendUserRequest
+     * @param sessionId
+     * @return
+     */
     @Override
     public SuspendUserResponse suspendUser(SuspendUserRequest suspendUserRequest, String sessionId) {
         User user = userEntityDetail.createUserEntityForSessionId(sessionId);

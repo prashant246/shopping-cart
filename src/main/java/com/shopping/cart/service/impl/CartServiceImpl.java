@@ -31,6 +31,11 @@ public class CartServiceImpl implements CartService {
         this.productEntityDetail = productEntityDetail;
     }
 
+    /**
+     * get the cart details of the user
+     * @param sessionId
+     * @return
+     */
     @Override
     public GetCartResponse get(String sessionId) {
         User user = userEntityDetail.createUserEntityForSessionId(sessionId);
@@ -39,6 +44,11 @@ public class CartServiceImpl implements CartService {
         return CartMapper.toGetCartResponse(cart);
     }
 
+    /**
+     * remove the product from cart
+     * @param addOrRemoveProduct
+     * @param sessionId
+     */
     @Override
     public void removeProduct(AddOrRemoveProduct addOrRemoveProduct, String sessionId) {
         User user = userEntityDetail.createUserEntityForSessionId(sessionId);
@@ -57,6 +67,11 @@ public class CartServiceImpl implements CartService {
         productEntityDetail.updateProduct(productById);
     }
 
+    /**
+     * add product to cart
+     * @param addOrRemoveProduct
+     * @param sessionId
+     */
     @Override
     public void addProduct(AddOrRemoveProduct addOrRemoveProduct, String sessionId) {
         User user = userEntityDetail.createUserEntityForSessionId(sessionId);

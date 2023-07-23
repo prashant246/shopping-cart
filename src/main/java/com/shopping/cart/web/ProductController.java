@@ -28,6 +28,12 @@ public class ProductController {
         this.productService = productService;
     }
 
+    /**
+     * Add the items to database, ADMIN can only use this API
+     * @param sessionId
+     * @param addOrUpdateProductRequest
+     * @return
+     */
     @PostMapping
     public ResponseEntity add(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId,
                     @RequestBody AddOrUpdateProductRequest addOrUpdateProductRequest) {
@@ -39,6 +45,12 @@ public class ProductController {
         }
     }
 
+    /**
+     * update the items in database for given productId, only ADMIN access
+     * @param sessionId
+     * @param addOrUpdateProductRequest
+     * @return
+     */
     @PutMapping
     public ResponseEntity update(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId,
                        @RequestBody AddOrUpdateProductRequest addOrUpdateProductRequest) {
@@ -50,6 +62,11 @@ public class ProductController {
         }
     }
 
+    /**
+     * Get available product from datasource. Any valid user can access this.
+     * @param sessionId
+     * @return
+     */
     @GetMapping
     public ResponseEntity get(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId) {
         try {

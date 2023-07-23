@@ -32,6 +32,12 @@ public class ProductServiceImpl implements ProductService {
         this.productEntityDetail = productEntityDetail;
     }
 
+    /**
+     * Add the product after validating the session, only admins can do it.
+     * @param addOrUpdateProductRequest
+     * @param sessionId
+     * @return
+     */
     @Override
     public AddOrUpdateProductResponse add(AddOrUpdateProductRequest addOrUpdateProductRequest, String sessionId) {
         User user = userEntityDetail.createUserEntityForSessionId(sessionId);
@@ -42,6 +48,12 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.toAddOrUpdateProductResponse(product);
     }
 
+    /**
+     * update the item details by admin
+     * @param addOrUpdateProductRequest
+     * @param sessionId
+     * @return
+     */
     @Override
     public AddOrUpdateProductResponse update(AddOrUpdateProductRequest addOrUpdateProductRequest, String sessionId) {
         User user = userEntityDetail.createUserEntityForSessionId(sessionId);
@@ -57,6 +69,11 @@ public class ProductServiceImpl implements ProductService {
         return addOrUpdateProductResponse;
     }
 
+    /**
+     * get the available items to user
+     * @param sessionId
+     * @return
+     */
     @Override
     public GetProductResponse get(String sessionId) {
         User user = userEntityDetail.createUserEntityForSessionId(sessionId);
