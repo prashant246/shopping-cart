@@ -29,6 +29,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * API to create the user. Role can be passed as ADMIN or CUSTOMER
+     * @param createOrUpdateUserRequest
+     * @return - the session id of the user created
+     */
     @PostMapping
     public ResponseEntity create(@RequestBody CreateOrUpdateUserRequest createOrUpdateUserRequest) {
         try {
@@ -39,6 +44,12 @@ public class UserController {
         }
     }
 
+    /**
+     * update the user details
+     * @param sessionId
+     * @param createOrUpdateUserRequest
+     * @return
+     */
     @PutMapping
     public ResponseEntity update(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId,
             @RequestBody CreateOrUpdateUserRequest createOrUpdateUserRequest) {
@@ -50,6 +61,11 @@ public class UserController {
         }
     }
 
+    /**
+     * Login API to login and generate a session id
+     * @param request
+     * @return
+     */
     @PostMapping(value = "/login")
     public ResponseEntity login(@RequestBody LoginRequest request) {
         try {
@@ -60,6 +76,11 @@ public class UserController {
         }
     }
 
+    /**
+     * logout api to logout, it will invalidate the session
+     * @param sessionId
+     * @return
+     */
     @PutMapping(value = "/logout")
     public ResponseEntity logout(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId) {
         try {
@@ -70,6 +91,11 @@ public class UserController {
         }
     }
 
+    /**
+     * Get basic details of user
+     * @param sessionId
+     * @return
+     */
     @GetMapping
     public ResponseEntity get(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId) {
         try {

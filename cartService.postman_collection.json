@@ -1,0 +1,418 @@
+{
+	"info": {
+		"_postman_id": "dbebeff2-0887-4d8c-a1c0-c831f846a600",
+		"name": "cartService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28697841"
+	},
+	"item": [
+		{
+			"name": "createUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"3\",\n    \"password\": \"3\",\n    \"name\": \"3\",\n    \"role\": \"ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/v1/user",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "1b1d0984-e299-471f-86d0-d5cecc3b27ea",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"prashant\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/v1/user",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUser",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "cf098c51-8cdb-4bed-b7d5-32519d2b559c",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:8080/v1/user",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "c2a81993-0731-41c4-8295-88dfd4626b3a",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:8080/v1/user/logout",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "c2a81993-0731-41c4-8295-88dfd4626b3a",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"1\",\n    \"password\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/v1/user/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "suspend-user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "984a2d61-7d37-4e80-a271-1f97602d66d3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userIds\": [\"1\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/v1/admin/suspend-user",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"admin",
+						"suspend-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-product",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "2ec9181f-cfbe-4bfb-8ea6-9230332d5dfc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:8080/v1/product",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "2ec9181f-cfbe-4bfb-8ea6-9230332d5dfc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"rice\",\n    \"count\": \"10\",\n    \"price\": \"19.0\",\n    \"discount\": \"1.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/v1/product",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "c56264a1-54a5-4474-b1f7-912b05613a1d",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\" : \"faadb3ac-2084-4b26-b022-843cb6d9b7dd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/v1/cart/remove",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"cart",
+						"remove"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-cart",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "c56264a1-54a5-4474-b1f7-912b05613a1d",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:8080/v1/cart",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-to-cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "c56264a1-54a5-4474-b1f7-912b05613a1d",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\" : \"773fe5dd-10d7-4e89-8556-4896fd83920a\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/v1/cart/add",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"cart",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove-from-cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X_SESSION_ID",
+						"value": "c56264a1-54a5-4474-b1f7-912b05613a1d",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\" : \"faadb3ac-2084-4b26-b022-843cb6d9b7dd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/v1/cart/remove",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"cart",
+						"remove"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

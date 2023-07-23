@@ -26,6 +26,11 @@ public class CartController {
         this.cartService = cartService;
     }
 
+    /**
+     * Get the cart details of the user with total amount details.
+     * @param sessionId
+     * @return
+     */
     @GetMapping()
     public ResponseEntity get(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId) {
         try {
@@ -36,6 +41,12 @@ public class CartController {
         }
     }
 
+    /**
+     * Add the given product id to the cart
+     * @param sessionId
+     * @param addOrRemoveProduct
+     * @return
+     */
     @PostMapping(value = "/add")
     public ResponseEntity addProduct(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId,
                                      @RequestBody AddOrRemoveProduct addOrRemoveProduct) {
@@ -47,6 +58,12 @@ public class CartController {
         }
     }
 
+    /**
+     * remove the given product id from the cart
+     * @param sessionId
+     * @param addOrRemoveProduct
+     * @return
+     */
     @PostMapping(value = "/remove")
     public ResponseEntity removeProduct(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId,
                                         @RequestBody AddOrRemoveProduct addOrRemoveProduct) {

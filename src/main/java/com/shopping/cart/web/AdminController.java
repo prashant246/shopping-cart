@@ -27,6 +27,12 @@ public class AdminController {
         this.sessionHandler = sessionHandler;
     }
 
+    /**
+     * suspend of a use can be done through this api and only ADMINs can do that
+     * @param sessionId
+     * @param suspendUserRequest
+     * @return
+     */
     @PostMapping(value = "/suspend-user")
     public ResponseEntity suspendUser(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId,
                             @RequestBody SuspendUserRequest suspendUserRequest) {

@@ -7,6 +7,7 @@ public enum ErrorMessages {
     INVALID_PASSWORD("Password is invalid"),
     PRODUCT_ID_NOT_PRESENT("Product Id is not present"),
     PRODUCT_NOT_AVAILABLE("Product is not in stock"),
+    SESSION_EXPIRED("Session is Expired"),
     INVALID_USER_ID("User Id is invalid");
 
     ErrorMessages(String s) {
