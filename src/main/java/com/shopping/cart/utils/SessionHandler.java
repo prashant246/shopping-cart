@@ -1,5 +1,6 @@
 package com.shopping.cart.utils;
 
+import com.shopping.cart.datatypes.enums.Role;
 import com.shopping.cart.datatypes.enums.SessionStatus;
 import com.shopping.cart.datatypes.requests.LoginRequest;
 import com.shopping.cart.domain.Session;
@@ -40,5 +41,12 @@ public class SessionHandler {
             return;
         }
         throw new CartServiceException(ErrorMessages.INVALID_PASSWORD.getErrorMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    public void isAdmin(User user) {
+        if (Role.ADMIN.equals(user.getRole())) {
+            return;
+        }
+        throw new CartServiceException(ErrorMessages.AUTHORIZED_FOR_ADMIN.getErrorMessage(), HttpStatus.UNAUTHORIZED);
     }
 }
