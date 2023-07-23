@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -140,5 +141,18 @@ public class UserEntityDetail {
         userById.setPassword(user.getCredential().getPassword());
         userById.setStatus(user.getStatus().name());
 
+    }
+
+    public void addToCart(String userId, String productId) {
+        userProductMappingRepository.save(new UserProductMapping(userId, productId));
+    }
+
+    public void removeFromCart(String userId, String productId) {
+        List<UserProductMapping> productForUserId = userProductMappingRepository.getProductForUserId(userId);
+        Optional<UserProductMapping> first = productForUserId.stream().filter(prod -> prod.getProductId().equals(productId)).findFirst();
+        if (first.isEmpty()) {
+            throw new CartServiceException(ErrorMessages.PRODUCT_ID_NOT_PRESENT.getErrorMessage(), HttpStatus.BAD_REQUEST);
+        }
+        userProductMappingRepository.remove(first.get());
     }
 }

@@ -69,4 +69,8 @@ public class InMemoryDataSource {
         }
         userProductMappings.add(userProductMapping);
     }
+
+    public static void removeUserProductMapping(UserProductMapping userProductMapping) {
+        userProductMappings.remove(userProductMapping);
+    }
 }

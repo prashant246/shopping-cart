@@ -1,11 +1,15 @@
 package com.shopping.cart.web;
 
+import com.shopping.cart.datatypes.requests.AddOrRemoveProduct;
+import com.shopping.cart.datatypes.responses.GetCartResponse;
+import com.shopping.cart.exception.CartServiceException;
 import com.shopping.cart.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import static com.shopping.cart.datatypes.Constants.X_SESSION_ID;
 
 /**
  * this contains the rest api for cart related actions.
@@ -23,17 +27,34 @@ public class CartController {
     }
 
     @GetMapping()
-    public void get() {
-        cartService.get();
+    public ResponseEntity get(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId) {
+        try {
+            GetCartResponse response = cartService.get(sessionId);
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (CartServiceException cse) {
+            return new ResponseEntity(cse.getMessage(), cse.getHttpStatus());
+        }
     }
 
     @PostMapping(value = "/add")
-    public void addProduct() {
-        cartService.addProduct();
+    public ResponseEntity addProduct(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId,
+                                     @RequestBody AddOrRemoveProduct addOrRemoveProduct) {
+        try {
+            cartService.addProduct(addOrRemoveProduct, sessionId);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (CartServiceException cse) {
+            return new ResponseEntity(cse.getMessage(), cse.getHttpStatus());
+        }
     }
 
     @PostMapping(value = "/remove")
-    public void removeProduct() {
-        cartService.removeProduct();
+    public ResponseEntity removeProduct(@RequestHeader(value = X_SESSION_ID, required = true) String sessionId,
+                                        @RequestBody AddOrRemoveProduct addOrRemoveProduct) {
+        try {
+            cartService.removeProduct(addOrRemoveProduct, sessionId);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (CartServiceException cse) {
+            return new ResponseEntity(cse.getMessage(), cse.getHttpStatus());
+        }
     }
 }

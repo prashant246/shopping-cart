@@ -20,4 +20,9 @@ public class InMemoryUserProductMappingReposityImpl implements UserProductMappin
     public void save(UserProductMapping userProductMapping) {
         InMemoryDataSource.addUserProductMapping(userProductMapping);
     }
+
+    @Override
+    public void remove(UserProductMapping userProductMapping) {
+        InMemoryDataSource.removeUserProductMapping(userProductMapping);
+    }
 }
