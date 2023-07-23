@@ -6,6 +6,7 @@ public enum ErrorMessages {
     AUTHORIZED_FOR_ADMIN("Only Admin are authorized to perform this action"),
     INVALID_PASSWORD("Password is invalid"),
     PRODUCT_ID_NOT_PRESENT("Product Id is not present"),
+    PRODUCT_NOT_AVAILABLE("Product is not in stock"),
     INVALID_USER_ID("User Id is invalid");
 
     ErrorMessages(String s) {

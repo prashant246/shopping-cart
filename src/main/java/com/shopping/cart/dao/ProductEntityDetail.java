@@ -41,6 +41,22 @@ public class ProductEntityDetail {
         return byId.getId();
     }
 
+    public com.shopping.cart.domain.Product getProductById(String productId) {
+        Product product = productRepository.getById(productId);
+        com.shopping.cart.domain.Product productToAdd = com.shopping.cart.domain.Product.builder()
+                .productId(product.getId())
+                .count(product.getCount())
+                .price(product.getPrice())
+                .title(product.getName())
+                .discount(product.getDiscount())
+                .status(ProductStatus.AVAILABLE)
+                .build();
+        if (product.getCount() < 1) {
+            productToAdd.setStatus(ProductStatus.UNAVAILABLE);
+        }
+        return productToAdd;
+    }
+
     public List<com.shopping.cart.domain.Product> getAvailableProducts() {
         List<Product> allProduct = productRepository.getAllProduct();
         List<com.shopping.cart.domain.Product> products = allProduct.stream().filter(product -> product.getCount() > 0).map(

@@ -13,6 +13,12 @@ public class UserProductMapping extends BaseEntity{
     String productId;
     Type type;
 
+    public UserProductMapping(String userId, String productId) {
+        this.productId = productId;
+        this.userId = userId;
+        this.type = Type.CART;
+    }
+
     public enum Type {
         CART,
         BOUGHT,

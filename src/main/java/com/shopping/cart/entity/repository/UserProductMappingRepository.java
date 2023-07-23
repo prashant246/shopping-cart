@@ -10,4 +10,6 @@ public interface UserProductMappingRepository {
 
     void save(UserProductMapping userProductMapping);
 
+    void remove(UserProductMapping userProductMapping);
+
 }
