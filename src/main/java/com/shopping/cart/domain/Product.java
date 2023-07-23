@@ -1,6 +1,7 @@
 package com.shopping.cart.domain;
 
 import com.shopping.cart.datatypes.enums.ProductStatus;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  */
 
 @Data
+@Builder
 public class Product {
 
     private String title;
