@@ -48,6 +48,9 @@ public class UserEntityDetail {
             throw new CartServiceException(ErrorMessages.INVALID_SESSION_ID.getErrorMessage(), HttpStatus.BAD_REQUEST);
         }
         User user = userRepository.getUserById(sessionDetail.getUserId());
+        if (Status.SUSPENDED.name().equals(user.getStatus())) {
+            throw new CartServiceException(ErrorMessages.SUSPENDED_USER.getErrorMessage(), HttpStatus.UNAUTHORIZED);
+        }
         return getUser(sessionDetail, user);
     }
 
@@ -76,6 +79,9 @@ public class UserEntityDetail {
         User user = userRepository.getUserById(userId);
         if (user == null) {
             throw new CartServiceException(ErrorMessages.INVALID_USER_ID.getErrorMessage(), HttpStatus.BAD_REQUEST);
+        }
+        if (Status.SUSPENDED.name().equals(user.getStatus())) {
+            throw new CartServiceException(ErrorMessages.SUSPENDED_USER.getErrorMessage(), HttpStatus.UNAUTHORIZED);
         }
         SessionDetail sessionDetail = sessionDetailRepository.getSessionForUserId(userId);
         return getUser(sessionDetail, user);
@@ -132,6 +138,7 @@ public class UserEntityDetail {
         userById.setName(user.getName());
         userById.setRole(user.getRole().name());
         userById.setPassword(user.getCredential().getPassword());
+        userById.setStatus(user.getStatus().name());
 
     }
 }

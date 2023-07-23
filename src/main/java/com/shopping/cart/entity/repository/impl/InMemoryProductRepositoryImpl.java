@@ -28,6 +28,11 @@ public class InMemoryProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public List<Product> getAllProduct() {
+        return InMemoryDataSource.getProducts();
+    }
+
+    @Override
     public void save(Product product) {
         InMemoryDataSource.addProduct(product);
     }

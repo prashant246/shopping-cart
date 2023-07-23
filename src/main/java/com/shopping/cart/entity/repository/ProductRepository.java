@@ -10,5 +10,7 @@ public interface ProductRepository {
 
     List<Product> getByIdIn(List<String> productIds);
 
+    List<Product> getAllProduct();
+
     void save(Product product);
 }
