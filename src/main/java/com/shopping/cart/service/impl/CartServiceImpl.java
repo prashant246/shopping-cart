@@ -52,8 +52,9 @@ public class CartServiceImpl implements CartService {
         Product product = productToRemove.get();
         cart.getProducts().remove(product);
         userEntityDetail.removeFromCart(user.getCredential().getUserId(), product.getProductId());
-        product.setCount(product.getCount() + 1);
-        productEntityDetail.updateProduct(product);
+        Product productById = productEntityDetail.getProductById(addOrRemoveProduct.getProductId());
+        productById.setCount(productById.getCount() + 1);
+        productEntityDetail.updateProduct(productById);
     }
 
     @Override
