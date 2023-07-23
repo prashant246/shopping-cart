@@ -1,5 +1,6 @@
 package com.shopping.cart.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  */
 
 @Data
+@Builder
 public class Cart {
     private List<Product> products;
     private Double totalAmount;
